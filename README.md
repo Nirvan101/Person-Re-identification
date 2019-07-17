@@ -67,13 +67,13 @@ So, this model will make a list of unique people in the video and will store the
 Between 2 consecutive frames, the person would move very little and his bounding boxes from those 2 frames will overlap a lot. I used this property to track people. People once detected are simply tracked across the video by checking the degree of overlap with the bounding boxes of the previous frame. If the bounding box of a person in a frame overlaps a lot with a box from the previous frame- we can conclude they are the same person. People are tracked this way.
 
 ```
-python human_detect.py
+python human_detect.py video2.avi
 ```
 
 To improve tracking, we can use the last k(=25) frames instead of just the previous frame. The current bounding box is checked for overlapping with all boxes in the previous k frames. Hence, tracking is done over k frames.
 
 ```
-python human_detect_track.py
+python human_detect_track.py video2.avi
 ```
 
 ### Tracking + re-identification
@@ -88,5 +88,5 @@ In this version, the model iterates over all frames and in each frame it obtains
 So, for each bounding box from the current frame, the model tries to find a bounding box from the previous frame which greatly overlaps with it (IOU > 0.9). If such a box is found, the model assigns the previous box’s person to the new bounding box. In this way, people are identified without actually running the neural network on them. If a bounding box is not able to match with any previous box, it means that this person just entered the frame and was not there in the previous frame. In this case, the reidentification neural network is run on the person to determine if he has appeared before or if he is a new person totally, in which case he is added to the list of unique people detected. This new person is compared with all the other previously detected people. If a match is found, then that means the person had appeared before but then disappeared for an intermediate period. If a match is not found, that means the person is appearing in the video for the first time and needs to be added to the list of unique people.
 
 ```
-python human_detect_track2.py
+python human_detect_track2.py video2.avi
 ```
