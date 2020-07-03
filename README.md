@@ -6,8 +6,6 @@ I have combined 2 approaches: Tracking and Re-identification.
 
 ![](https://cdn-images-1.medium.com/max/1200/1*-WkySYuR7koWY3g_Ikec2A.gif)
 
-[Additional documentation](https://docs.google.com/document/d/1JsVFL44qAQoDbLO2NOSjiuXVBEDEELg-9uv4PNACDLc/edit#)
-
 ## Output
 This model is run on a video which contains people in it. If a total of N people are seen in the video, the output is a list of N folders, each belonging to one person. Each folder contains cropped images of that person from all frames in the video.
 In the following screenshot, there are 7 folders as 7 people have been detected in the video.
